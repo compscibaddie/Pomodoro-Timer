@@ -39,3 +39,16 @@ def add_websites(filepath):
                 pass
             else:
                 dummy_file.write(redirect_path+" "+website+"\n")
+
+def remove_websites(filepath):
+    with open(filepath+"/hosts", "r+") as file:
+        content = file.readlines()
+        file.seek(0)
+        for line in content:
+            if not any(website in lines for website in website_list):
+                file.write(lines) 
+        file.truncate()
+    print(f"Bug check 0: \nt_now: {t_now}\nt_fut: {t_fut}")  
+
+    #GUI set pomodoro in motion
+    messagebox.showinfo("Pomodoro started!", "\It is now " + t_now.strftime("%H:%M") + "hrs. \nTimer is set for 25 minutes ")
