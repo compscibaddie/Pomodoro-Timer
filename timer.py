@@ -52,3 +52,36 @@ def remove_websites(filepath):
 
     #GUI set pomodoro in motion
     messagebox.showinfo("Pomodoro started!", "\It is now " + t_now.strftime("%H:%M") + "hrs. \nTimer is set for 25 minutes ")
+
+    #main script information
+    while True:
+        if t_now < t_fut:
+            add_websites(host_path)
+            print('First tnow < tfut')
+
+            if t_fut <= t_now <= t_fin:
+                print('Break time!')
+                remove_websites(host_path)
+            
+            else:
+                print('Third tnow > tfut - Finished')
+                print('\a')
+
+                for i in range(10):
+                    windsound.Beep((i+100), 500)
+            remove_websites(host_path)
+            usr_ans = messagebox.askyesno("Pomodoro finished!", "Do you want to start another Pomodoro?")
+            total_pomodoros += 1
+            if usr_ans == True:
+                t_now = dt.datetime.now()
+                t_fut = t_now + dt.timedelta(0, t_pom)
+                t_fin = t_now + dt.timedelta(0, t_pom+delta_sec)
+            continue
+            if usr_ans == False:
+                print(f"Total pomodoros completed: {total_pomodoros}")
+                break
+        time.sleep(20)
+        t_now = dt.datetime.now()
+        timenow = t_now.strftime("%H:%M")
+        print('\n\nMade it to the end!\n\n')
+    
