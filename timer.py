@@ -7,7 +7,6 @@ from tkinter import messagebox
 from tkinter import simpledialog
 import winsound
 
-
 #hinding the main window functionality
 root = tkinter.Tk()
 root.withdraw()
