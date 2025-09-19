@@ -1,11 +1,9 @@
 #importing the Time libraries for the timer
+import tkinter as tk
+from tkinter import ttk, messagebox
 import time
-import datetime as dt
-
-import tkinter
-from tkinter import messagebox
-from tkinter import simpledialog
 import winsound
+import threading
 
 #hinding the main window functionality
 root = tkinter.Tk()
@@ -32,7 +30,7 @@ t_fin = t_now + dt.timedelta(0, t_pom+delta_sec)
 #running main loop, to block all sites while the timer is running
 
 def add_websites(filepath):
-    with open(filepath+"\hosts", "r+") as dummy_file:
+    with open(filepath+"\\hosts", "r+") as dummy_file:
         content = dummy_file.read()
         for website in website_list:
             if website in content:
@@ -41,17 +39,17 @@ def add_websites(filepath):
                 dummy_file.write(redirect_path+" "+website+"\n")
 
 def remove_websites(filepath):
-    with open(filepath+"/hosts", "r+") as file:
+    with open(filepath+"\\hosts", "r+") as file:
         content = file.readlines()
         file.seek(0)
-        for line in content:
+        for lines in content:
             if not any(website in lines for website in website_list):
                 file.write(lines) 
         file.truncate()
     print(f"Bug check 0: \nt_now: {t_now}\nt_fut: {t_fut}")  
 
     #GUI set pomodoro in motion
-    messagebox.showinfo("Pomodoro started!", "\It is now " + t_now.strftime("%H:%M") + "hrs. \nTimer is set for 25 minutes ")
+    messagebox.showinfo("Pomodoro started!", f"It is now " + t_now.strftime("%H:%M") + "hrs. \nTimer is set for 25 minutes ")
 
     #main script information
     while True:
