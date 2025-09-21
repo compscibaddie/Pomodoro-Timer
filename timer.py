@@ -149,3 +149,7 @@ def create_widgets(self):
         for i in range(3):
             winsound.Beep(1000, 500)
             time.sleep(0.5)
+
+# Run the application
+if __name__ == "__main__":
+    PomodoroTimer()
