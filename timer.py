@@ -13,9 +13,9 @@ class PomodoroTimer:
         self.root.resizable(False, False)
         
         # Style configuration
-        self.style = ttk.Style()
-        self.style.configure("TButton", font=("Arial", 12))
-        self.style.configure("TLabel", font=("Arial", 14))
+        #self.style = ttk.Style()
+        #self.style.configure("TButton", font=("Arial", 12))
+        #self.style.configure("TLabel", font=("Arial", 14))
         
         # Variables
         self.work_time = 25 * 60  # 25 minutes in seconds
@@ -35,38 +35,38 @@ class PomodoroTimer:
         self.root.mainloop()
 
 #creating the widgets for the timer
-def create_widgets(self):
-    self.timer_label = tkk.label(self.root, text="45:00", font=("Arial", 40))
-    self.timer_label.pack(pady=20)
+    def create_widgets(self):
+        self.timer_label = tk.Label(self.root, text="25:00", font=("Arial", 40))
+        self.timer_label.pack(pady=20)
 
-    #timer status label
-    self.status_label = ttk.Label(self.root, text="Work Time - Focus", foreground="red") 
-    self.status_label.pack(pady=5)
+        #timer status label
+        self.status_label = tk.Label(self.root, text="Work Time - Focus", foreground="red") 
+        self.status_label.pack(pady=5)
 
-    #Timer Counter
-    self.counter_label = ttk.Label(self.root, text="Pomodoros Completed: 0") 
-    self.counter_label.pack(pady=5)
+        #Timer Counter
+        self.counter_label = tk.Label(self.root, text="Pomodoros Completed: 0") 
+        self.counter_label.pack(pady=5)
 
-    #Button Frame
-    button_frame = ttk.Frame(self.root)
-    button_frame.pack(pady=20)
+        #Button Frame
+        button_frame = tk.Frame(self.root)
+        button_frame.pack(pady=20)
 
-    #functional buttons
-    #Start Button
-    self.start_button = ttk.Button(button_frame, text="Start", command=self.start_timer)
-    self.start_button.grid(row=0, column=0, padx=10)
+        #functional buttons
+        #Start Button
+        self.start_button = tk.Button(button_frame, text="Start", command=self.start_timer)
+        self.start_button.grid(row=0, column=0, padx=10)
 
-    #Pause Button
-    self.pause_button = ttk.Button(button_frame, text="Pause", command=self.pause_timer, state="disabled")
-    self.pause_button.grid(row=0, column=1, padx=10)
+        #Pause Button
+        self.pause_button = tk.Button(button_frame, text="Pause", command=self.pause_timer, state="disabled")
+        self.pause_button.grid(row=0, column=1, padx=10)
 
-    #Reset Button
-    self.timer_button = tkk.button(button_frame, text="Reset", command=self.reset_timer)
-    self.reset_button.grid(row=0, column=3, padx=10)
+        #Reset Button
+        self.reset_button = tk.Button(button_frame, text="Reset", command=self.reset_timer)
+        self.reset_button.grid(row=0, column=2, padx=10)
 
-    #Skip Button
-    self.skip_button = tkk.button(button_frame, text="Skip", command=self.skip_timer)
-    self.skip_button.grid(row=0, column=3, padx=10)
+        #Skip Button
+        self.skip_button = tk.Button(button_frame, text="Skip", command=self.skip_timer)
+        self.skip_button.grid(row=0, column=3, padx=10)
 
 #Creating the methods
     def update_timer(self):
@@ -88,11 +88,11 @@ def create_widgets(self):
     def start_timer(self):
         self.is_running = True
         self.start_button.config(state="disabled")
-        self.pause_button.config(state="enabled")
+        self.pause_button.config(state="normal")
     
     def pause_timer(self):
         self.is_running = False
-        self.start_button.config(state="enabled")
+        self.start_button.config(state="normal")
         self.pause_button.config(state="disabled")
     
     def reset_timer(self):
@@ -101,7 +101,7 @@ def create_widgets(self):
         self.current_time = self.work_time
         self.timer_label.config(text="25:00")
         self.status_label.config(text="Work Time - Focus!", foreground="red")
-        self.start_button.config(state="enabled")
+        self.start_button.config(state="normal")
         self.pause_button.config(state="disabled")
     
     def skip_session(self):
@@ -141,7 +141,7 @@ def create_widgets(self):
             
             messagebox.showinfo("Break over!", "Break time is over!\nTime to get back to work.")
         
-        self.start_button.config(state="enabled")
+        self.start_button.config(state="normal")
         self.pause_button.config(state="disabled")
     
     def play_alarm(self):
@@ -152,4 +152,4 @@ def create_widgets(self):
 
 # Run the application
 if __name__ == "__main__":
-    PomodoroTimer()
+    app = PomodoroTimer();
